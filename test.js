@@ -12,3 +12,7 @@ let index = 0;
     setInterval(() => {
         moveSlide(1);
     }, 3000);
+
+
+
+    

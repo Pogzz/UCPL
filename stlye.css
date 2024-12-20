@@ -180,6 +180,7 @@ nav {
     /* Ensure the images fill the available space */
     .slide > img {
         object-fit: contain; /* Allows images to fit within the carousel container without being cropped */
+        object-position: top;
     }
 
     /* Adjust navigation button size for mobile */
@@ -364,19 +365,21 @@ html {
 .announcements {
     background-color: #f9f9f9;
     padding: 40px 20px;
-    margin-top: 50px;
+    margin-top: 10px;
     text-align: center;
     float: left;
-    max-height: 100vh; /* Set a maximum height for the section */
-    overflow-y: auto; /* Enable vertical scrolling when content overflows */
+    max-height: 90vh; /* Limit height */
+    overflow-y: auto; /* Allow scrolling when content overflows */
     width: 40%;
+    box-sizing: border-box; /* Ensure padding doesn't affect width */
 }
 
+/* Announcement Images */
 .announcements img {
-    display: block;   /* Make the image a block element */
-    margin: 20px auto; /* Center the image and give it some vertical space */
-    max-width: 100%;   /* Make sure the image doesn't overflow */
-    height: auto;      /* Maintain aspect ratio */
+    display: block;
+    margin: 20px auto;
+    max-width: 100%;  /* Ensure images don't overflow */
+    height: auto;     /* Maintain aspect ratio */
 }
 
 /* Announcement Header */
@@ -403,6 +406,7 @@ html {
     max-width: 700px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease-in-out;
+    margin: 0 auto; /* Center items */
 }
 
 /* Hover effect for announcement items */
@@ -433,10 +437,48 @@ html {
 
 /* Mobile Responsiveness */
 @media (max-width: 768px) {
-    .announcement-item {
+    .announcements {
         width: 100%;
+        padding: 20px; /* Reduce padding */
+    }
+
+    .announcement-item {
+        width: 100%; /* Full width on smaller screens */
+        padding: 15px; /* Less padding */
+    }
+
+    .announcement-header h2 {
+        font-size: 1.8em; /* Smaller font */
+    }
+
+    .announcement-item h3 {
+        font-size: 1.3em; /* Adjust title size */
+    }
+
+    .announcement-item p {
+        font-size: 1em; /* Adjust paragraph font */
+    }
+
+    .container {
+        flex-direction: column; /* Keep column layout on small screens */
     }
 }
+
+/* Further responsiveness for extra small devices */
+@media (max-width: 480px) {
+    .announcement-header h2 {
+        font-size: 1.6em; /* Smaller font for extra small screens */
+    }
+
+    .announcement-item h3 {
+        font-size: 1.2em; /* Title font size */
+    }
+
+    .announcement-item p {
+        font-size: 0.95em; /* Adjust paragraph font size */
+    }
+}
+
 
 
   
@@ -447,7 +489,7 @@ html {
     justify-content: center;
     max-width: 1200px;
     padding: 16px;
-    margin-top: 800px;
+    margin-top: 50px;
 }
 
 .gallery-item {
@@ -541,7 +583,272 @@ html {
     background-color: #fff;
   }
 
-/* Container for the sponsor section */
+
+
+ /* Container for the carousel */
+.photo-carousel-container {
+    position: relative;
+    height: 100%;
+    max-width: 600px; /* Max width for large screens */
+    height: 900px; /* Set fixed height for images */
+    overflow: hidden;
+    margin-top: 50px;
+    margin: auto; /* Center container */
+    border-radius: 20px;
+}
+
+/* Carousel */
+.photo-carousel {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+/* Carousel item */
+.photo-carousel-item {
+    min-width: 100%;
+    box-sizing: border-box;
+}
+
+/* Image in the carousel */
+.photo-carousel-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Adjust to fill container */
+}
+
+/* Navigation buttons */
+.photo-prev, .photo-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 1; /* Ensure buttons are on top */
+}
+
+.photo-prev {
+    left: 10px;
+}
+
+.photo-next {
+    right: 10px;
+}
+
+/* Event Header */
+.event {
+    text-align: center;
+    font-size: 50px;
+    color: orange;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+/* Annonce Header */
+.annonce {
+    text-align: center;
+    font-size: 70px;
+    font-weight: bold;
+    color: orange;
+    margin-bottom: 20px;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .photo-carousel-container {
+        height: 600px; /* Adjust height for smaller screens */
+        width: 100%;
+    }
+
+    .event {
+        font-size: 30px; /* Smaller font size */
+    }
+
+    .annonce {
+        font-size: 50px; /* Smaller font size */
+    }
+
+    .photo-carousel-item img {
+        object-fit: cover; /* Images fill the container */
+    }
+}
+
+@media (max-width: 480px) {
+    .photo-carousel-container {
+        height: 500px; /* Further reduce height */
+    }
+
+    .event {
+        font-size: 24px; /* Further reduce font size */
+    }
+
+    .annonce {
+        font-size: 40px; /* Further reduce font size */
+    }
+}
+
+
+/* Global Styles */
+
+  
+  /* Flexbox Container for Logos */
+  .logo-container {
+    display: flex;
+    flex-wrap: wrap;          /* Allows logos to wrap onto new lines if needed */
+    justify-content: center;  /* Centers the logos horizontally */
+    gap: 20px;                /* Adds space between logos */
+    max-width: 15000px;        /* Maximum width of the flexbox container */
+    padding: 20px;            /* Padding around the container */
+    margin-left: auto;
+    margin-right: auto;
+    font-family: bold;
+
+  }
+  
+  /* Individual Logo Item */
+  .logo-item img {
+    width: 120px;             /* Adjust size of logos */
+    height: auto;             /* Maintain aspect ratio */
+    transition: transform 0.3s ease; /* Smooth hover effect */
+  }
+  
+  /* Hover Effect */
+  .logo-item img:hover {
+    transform: scale(1.1);    /* Slightly enlarges the logo on hover */
+  }
+  
+  /* Mobile-friendly Styles */
+  @media (max-width: 600px) {
+    .logo-container {
+      gap: 10px;              /* Reduce space between logos on small screens */
+      padding: 10px;          /* Adjust padding for smaller screens */
+    }
+  
+    .logo-item img {
+      width: 80px;            /* Resize logos for small screens */
+    }
+  }
+  
+  @media (max-width: 400px) {
+    .logo-container {
+      gap: 5px;               /* Even smaller gap for very small screens */
+    }
+  
+    .logo-item img {
+      width: 60px;            /* Further resize logos for very small screens */
+    }
+  }
+  
+  /* footer {
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    background: #fff;
+    box-shadow: -5px -0 2px rgba(0,0,0,0.5);
+}
+
+.footer_content {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    padding: 2rem 0;
+    grid-gap: 2.5rem;
+}
+
+.footer_heading {
+    color: #000;
+    padding-bottom: 2rem;
+    
+} */
+
+ul {
+    list-style: none;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    /* justify-content: space-between; */
+}
+
+.footer {
+    background-color: #f9f9f9;
+    padding: 70px 0;
+}
+
+.footer-col {
+    width: 25%;
+    padding: 0 15px;
+}
+
+.footer-col h4 {
+    font-size: 18px;
+    color: orange;
+    text-transform: capitalize;
+    margin-bottom: 25px;
+    position: relative;
+}
+
+.footer-col h4::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -10px;
+    background-color: orange;
+    height: 2px;
+    box-sizing: border-box;
+    width: 50px;
+}
+
+.container {
+    max-width: 1170px;
+    margin: auto;
+}
+
+.footer-col ul li:not(:last-child) {
+    margin-bottom: 10px;
+
+}
+
+.footer-col ul li a {
+    font-size: 16px;
+    text-transform: capitalize;
+    /* color: #ffffff; */
+    text-decoration: none;
+    font-weight: 300;
+    display: block;
+    transition: all 0.3s ease;
+}
+
+.footer-col ul li a:hover {
+    color: orange;
+    padding-left: 8px;
+}
+
+.footer-col .social-links a {
+    display: inline-block;
+    height: 40px;
+    width: 40px;
+    /* margin: 0 10px 10px 0;
+    text-align: center;
+    line-height: 40px;
+    border-radius: 50%;
+    color: #ffffff; */
+    transition: all 0.5s ease;
+}
+
+.footer-col .social-links a:hover {
+    color: 2426b;
+    
+}
+
+@media(max-width: 767px) {
+    .footer-col {
+        width: 55%;
+        margin-bottom: 30px;
+    }
+}
 .Sponsor {
     display: flex;
     flex-direction: column;    /* Stack the elements vertically */
@@ -555,7 +862,7 @@ html {
 .major {
     font-size: 24px;           /* Large font size for the title */
     font-weight: bold;         /* Bold the text */
-    color: #3498DB;            /* Blue color for the title */
+    color: black;            /* Blue color for the title */
     margin-bottom: 15px;       /* Space between title and logo */
     text-transform: uppercase; /* Uppercase for a formal look */
     letter-spacing: 1px;       /* Slight letter spacing */
@@ -567,65 +874,4 @@ html {
     height: auto;  /* Maintain aspect ratio */
     max-width: 100%; /* Make sure the image doesn't overflow */
     border-radius: 8px;  /* Optional: round the corners of the logo */
-}
-
- /* Container for the carousel */
- .photo-carousel-container {
-    position: relative;
-    width: 600px; /* Width of the container */
-    height: 700px; /* Height of the container */
-    overflow: hidden;
-    float: right;
-    margin-top: 50px;
-    margin-right: 60px;
-}
-
-.photo-carousel {
-    display: flex;
-    transition: transform 0.5s ease-in-out;
-}
-
-.photo-carousel-item {
-    min-width: 100%;
-    box-sizing: border-box;
-}
-
-.photo-carousel-item img {
-    width: 100%;
-    height: 100%; /* Adjust image to cover the container height */
-    object-fit: contain; /* Ensure images cover the container properly */
-}
-
-/* Navigation buttons */
-.photo-prev, .photo-next {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: rgba(0, 0, 0, 0.5);
-    color: white;
-    border: none;
-    padding: 10px;
-    cursor: pointer;
-}
-
-.photo-prev {
-    left: 10px;
-}
-
-.photo-next {
-    right: 10px;
-}
-
-.event{
-    text-align: center;
-    font-size: 50px;
-    color: orange;
-    font-weight: bold;
-}
-
-.annonce{
-    text-align: center;
-    font-size: 70px;
-    font-weight: bold;
-    color: orange;
 }

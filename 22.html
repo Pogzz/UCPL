@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>School Logo Carousel</title>
+    <style>
+        /* Container for the carousel */
+        .carousel-container {
+            width: 80%;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden; /* Hide the part of the image that's out of view */
+        }
+
+        /* The carousel itself */
+        .carousel {
+            display: flex;
+            transition: transform 0.5s ease-in-out; /* Smooth transition between slides */
+        }
+
+        /* Individual logo images */
+        .carousel img {
+            width: 100%;
+            max-width: 300px; /* Set the maximum width of the logos */
+            height: auto;
+            margin-right: 10px; /* Space between images */
+            border-radius: 8px; /* Rounded corners for logos */
+            flex-shrink: 0; /* Prevent shrinking when resizing */
+        }
+
+        /* Left and right navigation buttons */
+        .prev, .next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            font-size: 18px;
+            border-radius: 50%;
+        }
+
+        .prev {
+            left: 10px;
+        }
+
+        .next {
+            right: 10px;
+        }
+
+        /* Optional: Styling for the carousel container */
+        .carousel-container {
+            max-width: 100%;
+            margin: 20px auto;
+            border: 2px solid #ddd; /* Optional border around the carousel */
+            border-radius: 10px;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="carousel-container">
+        <div class="carousel">
+            <img src="UNIVERSITY LOGO/holy angel.png" alt="School Logo 1">
+            <img src="UNIVERSITY LOGO/logo-plmar-295x300.png" alt="School Logo 2">
+            <img src="UNIVERSITY LOGO/plm.png" alt="School Logo 3">
+            <img src="UNIVERSITY LOGO/regis mari.png" alt="School Logo 4">
+        </div>
+
+        <!-- Navigation buttons -->
+        <button class="prev" onclick="moveSlide(-1)">&#10094;</button>
+        <button class="next" onclick="moveSlide(1)">&#10095;</button>
+    </div>
+
+    <script>
+        // JavaScript to control the carousel movement
+        let currentIndex = 0;
+
+        // Get the carousel and images
+        const carousel = document.querySelector('.carousel');
+        const images = document.querySelectorAll('.carousel img');
+
+        function moveSlide(direction) {
+            // Update the current index based on the direction
+            currentIndex += direction;
+
+            // If the current index is outside the bounds, loop back to the other side
+            if (currentIndex < 0) {
+                currentIndex = images.length - 1;
+            } else if (currentIndex >= images.length) {
+                currentIndex = 0;
+            }
+
+            // Move the carousel to the appropriate position
+            carousel.style.transform = `translateX(-${currentIndex * (images[0].clientWidth + 10)}px)`;
+        }
+
+        // Optionally, you can also set up automatic sliding
+        setInterval(() => {
+            moveSlide(1);
+        }, 3000); // Change image every 3 seconds
+    </script>
+
+</body>
+</html>
